@@ -33,7 +33,7 @@
             this.equals = new System.Windows.Forms.Button();
             this.dot = new System.Windows.Forms.Button();
             this.num0 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.c = new System.Windows.Forms.Button();
             this.plus = new System.Windows.Forms.Button();
             this.num3 = new System.Windows.Forms.Button();
             this.num2 = new System.Windows.Forms.Button();
@@ -47,8 +47,8 @@
             this.num8 = new System.Windows.Forms.Button();
             this.num7 = new System.Windows.Forms.Button();
             this.divide = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.b = new System.Windows.Forms.Button();
+            this.a = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +80,7 @@
             this.buttonPanel.Controls.Add(this.equals, 3, 4);
             this.buttonPanel.Controls.Add(this.dot, 2, 4);
             this.buttonPanel.Controls.Add(this.num0, 1, 4);
-            this.buttonPanel.Controls.Add(this.button17, 0, 4);
+            this.buttonPanel.Controls.Add(this.c, 0, 4);
             this.buttonPanel.Controls.Add(this.plus, 3, 3);
             this.buttonPanel.Controls.Add(this.num3, 2, 3);
             this.buttonPanel.Controls.Add(this.num2, 1, 3);
@@ -94,8 +94,8 @@
             this.buttonPanel.Controls.Add(this.num8, 1, 1);
             this.buttonPanel.Controls.Add(this.num7, 0, 1);
             this.buttonPanel.Controls.Add(this.divide, 3, 0);
-            this.buttonPanel.Controls.Add(this.button3, 2, 0);
-            this.buttonPanel.Controls.Add(this.button2, 1, 0);
+            this.buttonPanel.Controls.Add(this.b, 2, 0);
+            this.buttonPanel.Controls.Add(this.a, 1, 0);
             this.buttonPanel.Controls.Add(this.clear, 0, 0);
             this.buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.buttonPanel.Location = new System.Drawing.Point(12, 75);
@@ -125,6 +125,7 @@
             this.equals.TabIndex = 19;
             this.equals.Text = "=";
             this.equals.UseVisualStyleBackColor = true;
+            this.equals.Click += new System.EventHandler(this.equals_Click);
             // 
             // dot
             // 
@@ -140,6 +141,7 @@
             this.dot.TabIndex = 18;
             this.dot.Text = ".";
             this.dot.UseVisualStyleBackColor = true;
+            this.dot.Visible = false;
             // 
             // num0
             // 
@@ -156,19 +158,20 @@
             this.num0.Text = "0";
             this.num0.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // c
             // 
-            this.button17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.c.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button17.AutoSize = true;
-            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.button17.Location = new System.Drawing.Point(3, 283);
-            this.button17.Name = "button17";
-            this.button17.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button17.Size = new System.Drawing.Size(83, 65);
-            this.button17.TabIndex = 16;
-            this.button17.UseVisualStyleBackColor = true;
+            this.c.AutoSize = true;
+            this.c.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.c.Location = new System.Drawing.Point(3, 283);
+            this.c.Name = "c";
+            this.c.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.c.Size = new System.Drawing.Size(83, 65);
+            this.c.TabIndex = 16;
+            this.c.UseVisualStyleBackColor = true;
+            this.c.Visible = false;
             // 
             // plus
             // 
@@ -365,33 +368,35 @@
             this.divide.Text = "/";
             this.divide.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // b
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.AutoSize = true;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.button3.Location = new System.Drawing.Point(181, 3);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(83, 64);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = true;
+            this.b.AutoSize = true;
+            this.b.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.b.Location = new System.Drawing.Point(181, 3);
+            this.b.Name = "b";
+            this.b.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.b.Size = new System.Drawing.Size(83, 64);
+            this.b.TabIndex = 2;
+            this.b.UseVisualStyleBackColor = true;
+            this.b.Visible = false;
             // 
-            // button2
+            // a
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.a.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.AutoSize = true;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.button2.Location = new System.Drawing.Point(92, 3);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(83, 64);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = true;
+            this.a.AutoSize = true;
+            this.a.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.a.Location = new System.Drawing.Point(92, 3);
+            this.a.Name = "a";
+            this.a.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.a.Size = new System.Drawing.Size(83, 64);
+            this.a.TabIndex = 1;
+            this.a.UseVisualStyleBackColor = true;
+            this.a.Visible = false;
             // 
             // clear
             // 
@@ -407,6 +412,7 @@
             this.clear.TabIndex = 0;
             this.clear.Text = "c";
             this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // Form1
             // 
@@ -445,10 +451,10 @@
         private System.Windows.Forms.Button num8;
         private System.Windows.Forms.Button num7;
         private System.Windows.Forms.Button divide;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button b;
+        private System.Windows.Forms.Button a;
         private System.Windows.Forms.Button clear;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button c;
     }
 }
 
