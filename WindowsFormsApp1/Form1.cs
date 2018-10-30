@@ -12,22 +12,18 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string val1;
-        string val2;
-        string Operator;
+        Calculator calc = new Calculator();
 
         public Form1()
         {
             InitializeComponent();
             InitializeButtons();
-          
         }
 
         private void GetNumberButtonValue(object sender, EventArgs e)
         {
             var btn = (Button)sender;
             textBox1.Text += btn.Text;   
-
         }
 
         //Assumes number already present in textBox1
@@ -37,7 +33,8 @@ namespace WindowsFormsApp1
 
             var currentTextBoxValue = textBox1.Text;
 
-            val1 = currentTextBoxValue;
+            calc.GetOper(textBox1.Text, btn.Text);
+
 
             textBox1.Text = "";
 
@@ -46,7 +43,6 @@ namespace WindowsFormsApp1
             multiply.Enabled = false;
             divide.Enabled = false;
 
-            Operator += btn.Text;
         }
 
 
@@ -67,7 +63,6 @@ namespace WindowsFormsApp1
                             b.Click += new System.EventHandler(GetOperator);
                     }
                 }
-
             }
         }
 
@@ -78,40 +73,19 @@ namespace WindowsFormsApp1
             minus.Enabled = true;
             multiply.Enabled = true;
             divide.Enabled = true;
-            Operator = "";
-            val1 = "";
-            val2 = "";
+            calc.Clear();
         }
 
         private void equals_Click(object sender, EventArgs e)
         {
-            var x = Convert.ToDecimal(val1);
-            val2 = textBox1.Text;
-            var y = Convert.ToDecimal(val2);
-            decimal result;
             
-            var oper = Operator;
+            calc.GetResult(textBox1.Text);
+            textBox1.Text = calc.equals.ToString();
+        }
 
-            if (oper == "+")
-            {
-                result = x + y;
-                textBox1.Text = result.ToString();
-            }
-            else if (oper == "-")
-            {
-                result = x - y;
-                textBox1.Text = result.ToString();
-            }
-            else if (oper == "x")
-            {
-                result = x * y;
-                textBox1.Text = result.ToString();
-            }
-            else if (oper == "/")
-            {
-                result = x / y;
-                textBox1.Text = result.ToString();
-            }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
