@@ -34,18 +34,39 @@ namespace WindowsFormsApp1
             decimal value1;
             bool success = decimal.TryParse(textBox1.Text, out value1);
             if (success)
-                calc.GetOper(value1, btn.Text);
+            {
+                var opEnum = (GetEnumOp(btn.Text));
+                if (opEnum == null)
+                {
+                    return;
+                }
 
+                calc.GetOper(value1, opEnum.Value);
+                textBox1.Text = "";
 
-            textBox1.Text = "";
-
-            plus.Enabled = false;
-            minus.Enabled = false;
-            multiply.Enabled = false;
-            divide.Enabled = false;
-
+                plus.Enabled = false;
+                minus.Enabled = false;
+                multiply.Enabled = false;
+                divide.Enabled = false;
+            }
         }
 
+        private Oper? GetEnumOp(string op)
+        {
+            switch (op)
+            {
+                case "+":
+                    return Oper.add;
+                case "-":
+                    return Oper.sub;
+                case "x":
+                    return Oper.mult;
+                case "/":
+                    return Oper.div;
+                default:
+                    return null;
+            }
+        }
 
         private void InitializeButtons()
         {

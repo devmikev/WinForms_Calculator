@@ -123,6 +123,7 @@
             this.equals.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.equals.Size = new System.Drawing.Size(86, 65);
             this.equals.TabIndex = 19;
+            this.equals.Tag = "4";
             this.equals.Text = "=";
             this.equals.UseVisualStyleBackColor = true;
             this.equals.Click += new System.EventHandler(this.equals_Click);
@@ -185,6 +186,7 @@
             this.plus.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.plus.Size = new System.Drawing.Size(86, 64);
             this.plus.TabIndex = 15;
+            this.plus.Tag = "0";
             this.plus.Text = "+";
             this.plus.UseVisualStyleBackColor = true;
             // 
@@ -245,6 +247,7 @@
             this.minus.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.minus.Size = new System.Drawing.Size(86, 64);
             this.minus.TabIndex = 11;
+            this.minus.Tag = "1";
             this.minus.Text = "-";
             this.minus.UseVisualStyleBackColor = true;
             // 
@@ -305,6 +308,7 @@
             this.multiply.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.multiply.Size = new System.Drawing.Size(86, 64);
             this.multiply.TabIndex = 7;
+            this.multiply.Tag = "2";
             this.multiply.Text = "x";
             this.multiply.UseVisualStyleBackColor = true;
             // 
@@ -365,6 +369,7 @@
             this.divide.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.divide.Size = new System.Drawing.Size(86, 64);
             this.divide.TabIndex = 3;
+            this.divide.Tag = "3";
             this.divide.Text = "/";
             this.divide.UseVisualStyleBackColor = true;
             // 
@@ -410,6 +415,7 @@
             this.clear.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.clear.Size = new System.Drawing.Size(83, 64);
             this.clear.TabIndex = 0;
+            this.clear.Tag = "5";
             this.clear.Text = "c";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
