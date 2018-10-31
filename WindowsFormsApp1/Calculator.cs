@@ -8,11 +8,9 @@ namespace WindowsFormsApp1
 {
     class Calculator
     {
-        public string val1;
-        public string val2;
-        public string Operator;
-        public string result;
-        public decimal equals;
+        private decimal val1;
+        private decimal val2;
+        private string Operator;
 
         public Calculator()
         {
@@ -22,24 +20,24 @@ namespace WindowsFormsApp1
         public void Clear()
         {
             this.Operator = "";
-            this.val1 = "";
-            this.val2 = "";
-            this.result = "";
+            this.val1 = 0;
+            this.val2 = 0;
         }
 
-        public void GetOper(string currentValue, string _operator)
+        public void GetOper(decimal currentValue, string _operator)
         {
             this.val1 = currentValue;
             this.Operator += _operator;
         }
 
-        public void GetResult(string value2)
+        public decimal GetResult(decimal value2)
         {
             this.val2 = value2;
+            decimal equals = 0;
 
-            var x = Convert.ToDecimal(val1);
+            var x = val1;
             
-            var y = Convert.ToDecimal(val2);
+            var y = val2;
 
             var oper = Operator;
 
@@ -59,6 +57,8 @@ namespace WindowsFormsApp1
             {
                 equals = x / y;
             }
+
+            return equals;
         }
     }
 }

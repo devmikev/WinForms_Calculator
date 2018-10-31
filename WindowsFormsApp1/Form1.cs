@@ -31,9 +31,10 @@ namespace WindowsFormsApp1
         {
             var btn = (Button)sender;
 
-            var currentTextBoxValue = textBox1.Text;
-
-            calc.GetOper(textBox1.Text, btn.Text);
+            decimal value1;
+            bool success = decimal.TryParse(textBox1.Text, out value1);
+            if (success)
+                calc.GetOper(value1, btn.Text);
 
 
             textBox1.Text = "";
@@ -78,14 +79,10 @@ namespace WindowsFormsApp1
 
         private void equals_Click(object sender, EventArgs e)
         {
-            
-            calc.GetResult(textBox1.Text);
-            textBox1.Text = calc.equals.ToString();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            decimal value2;
+            bool success = decimal.TryParse(textBox1.Text, out value2);
+            if (success)
+                textBox1.Text = calc.GetResult(value2).ToString();
         }
     }
 }
