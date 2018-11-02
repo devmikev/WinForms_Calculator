@@ -4,14 +4,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+
     public partial class Form1 : Form
     {
+
+        //RequestCurrency currency = new RequestCurrency();
+
         Calculator calc = new Calculator();
 
         public Form1()
@@ -24,31 +29,6 @@ namespace WindowsFormsApp1
         {
             var btn = (Button)sender;
             textBox1.Text += btn.Text;   
-        }
-
-        //Assumes number already present in textBox1
-        private void GetOperator(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-
-            decimal value1;
-            bool success = decimal.TryParse(textBox1.Text, out value1);
-            if (success)
-            {
-                var opEnum = (GetEnumOp(btn.Text));
-                if (opEnum == null)
-                {
-                    return;
-                }
-
-                calc.GetOper(value1, opEnum.Value);
-                textBox1.Text = "";
-
-                plus.Enabled = false;
-                minus.Enabled = false;
-                multiply.Enabled = false;
-                divide.Enabled = false;
-            }
         }
 
         private Oper? GetEnumOp(string op)
@@ -104,6 +84,49 @@ namespace WindowsFormsApp1
             bool success = decimal.TryParse(textBox1.Text, out value2);
             if (success)
                 textBox1.Text = calc.GetResult(value2).ToString();
+        }
+
+        //Assumes number already present in textBox1
+        private void GetOperator(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+
+            decimal value1;
+            bool success = decimal.TryParse(textBox1.Text, out value1);
+            if (success)
+            {
+                var opEnum = (GetEnumOp(btn.Text));
+                if (opEnum == null)
+                {
+                    return;
+                }
+
+                calc.GetOper(value1, opEnum.Value);
+                textBox1.Text = "";
+
+                plus.Enabled = false;
+                minus.Enabled = false;
+                multiply.Enabled = false;
+                divide.Enabled = false;
+            }
+        }
+
+        private void b_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dot_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            textBox1.Text += btn.Text;
+        }
+
+        private void currency_Click(object sender, EventArgs e)
+        {
+            //string currency = RequestCurrency.GetCurrency().ToString();
+            var currency = RequestCurrency.GetRequest("http://free.currencyconverterapi.com/api/v5/convert?q=USD_EUR&compact=y").Result;
+            textBox1.Text = currency;
         }
     }
 }

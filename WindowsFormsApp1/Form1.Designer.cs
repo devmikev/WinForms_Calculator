@@ -47,7 +47,7 @@
             this.num8 = new System.Windows.Forms.Button();
             this.num7 = new System.Windows.Forms.Button();
             this.divide = new System.Windows.Forms.Button();
-            this.b = new System.Windows.Forms.Button();
+            this.currency = new System.Windows.Forms.Button();
             this.a = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.buttonPanel.SuspendLayout();
@@ -94,7 +94,7 @@
             this.buttonPanel.Controls.Add(this.num8, 1, 1);
             this.buttonPanel.Controls.Add(this.num7, 0, 1);
             this.buttonPanel.Controls.Add(this.divide, 3, 0);
-            this.buttonPanel.Controls.Add(this.b, 2, 0);
+            this.buttonPanel.Controls.Add(this.currency, 2, 0);
             this.buttonPanel.Controls.Add(this.a, 1, 0);
             this.buttonPanel.Controls.Add(this.clear, 0, 0);
             this.buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
@@ -142,7 +142,7 @@
             this.dot.TabIndex = 18;
             this.dot.Text = ".";
             this.dot.UseVisualStyleBackColor = true;
-            this.dot.Visible = false;
+            this.dot.Click += new System.EventHandler(this.dot_Click);
             // 
             // num0
             // 
@@ -373,20 +373,21 @@
             this.divide.Text = "/";
             this.divide.UseVisualStyleBackColor = true;
             // 
-            // b
+            // currency
             // 
-            this.b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.currency.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.b.AutoSize = true;
-            this.b.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.b.Location = new System.Drawing.Point(181, 3);
-            this.b.Name = "b";
-            this.b.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.b.Size = new System.Drawing.Size(83, 64);
-            this.b.TabIndex = 2;
-            this.b.UseVisualStyleBackColor = true;
-            this.b.Visible = false;
+            this.currency.AutoSize = true;
+            this.currency.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.currency.Location = new System.Drawing.Point(181, 3);
+            this.currency.Name = "currency";
+            this.currency.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.currency.Size = new System.Drawing.Size(83, 64);
+            this.currency.TabIndex = 2;
+            this.currency.Text = "€";
+            this.currency.UseVisualStyleBackColor = true;
+            this.currency.Click += new System.EventHandler(this.currency_Click);
             // 
             // a
             // 
@@ -457,7 +458,7 @@
         private System.Windows.Forms.Button num8;
         private System.Windows.Forms.Button num7;
         private System.Windows.Forms.Button divide;
-        private System.Windows.Forms.Button b;
+        private System.Windows.Forms.Button currency;
         private System.Windows.Forms.Button a;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button c;
