@@ -123,6 +123,7 @@ namespace WindowsFormsApp1
             textBox1.Text += btn.Text;
         }
 
+        //https://stackoverflow.com/a/17248813/57883 found working solution for async blocking on winforms
         async private void currency_Click(object sender, EventArgs e)
         {
             decimal value1;
