@@ -69,5 +69,10 @@ namespace WindowsFormsApp1
 
             return equals;
         }
+
+        public decimal ConvertCurrency(decimal val1, decimal val2)
+        {
+            return val1 * val2;
+        }
     }
 }

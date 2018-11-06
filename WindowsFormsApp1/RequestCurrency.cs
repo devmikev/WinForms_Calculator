@@ -12,15 +12,20 @@ namespace WindowsFormsApp1
 {
     public static class RequestCurrency
     {
-        
-        static void Main2(string[] args)
+
+        public async static Task<decimal?> GetValue()
         {
 
-            string result = GetRequest("http://free.currencyconverterapi.com/api/v5/convert?q=USD_EUR&compact=y").Result;
+            string result = await GetRequest("http://free.currencyconverterapi.com/api/v5/convert?q=USD_EUR&compact=y");
 
             JsonObject output = JsonConvert.DeserializeObject<JsonObject>(result);
-            Console.WriteLine(output.USD_EUR.val);
-
+            decimal value2;
+            bool success = decimal.TryParse(output.USD_EUR.val.ToString(), out value2);
+            if (success)
+            {
+                return value2;
+            }
+            return null;
         }
 
         public async static Task<string> GetRequest(string url)
