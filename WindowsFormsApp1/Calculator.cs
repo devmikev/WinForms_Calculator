@@ -11,7 +11,8 @@ namespace WindowsFormsApp1
         add,
         sub,
         mult,
-        div
+        div,
+        cur
     }
 
     class Calculator

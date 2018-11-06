@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -122,11 +123,25 @@ namespace WindowsFormsApp1
             textBox1.Text += btn.Text;
         }
 
-        private void currency_Click(object sender, EventArgs e)
+        async private void currency_Click(object sender, EventArgs e)
         {
-            //string currency = RequestCurrency.GetCurrency().ToString();
-            var currency = RequestCurrency.GetRequest("http://free.currencyconverterapi.com/api/v5/convert?q=USD_EUR&compact=y").Result;
-            textBox1.Text = currency;
+            decimal value1;
+            bool success = decimal.TryParse(textBox1.Text, out value1);
+            if (success)
+            {
+                var currency = await RequestCurrency.GetRequest("http://free.currencyconverterapi.com/api/v5/convert?q=USD_EUR&compact=y");
+                JsonObject output = JsonConvert.DeserializeObject<JsonObject>(currency);
+                decimal value2;
+                bool success2 = decimal.TryParse(output.USD_EUR.val.ToString(), out value2);
+                if (success2)
+                {
+                    textBox1.Text = (value1 * value2).ToString("F");
+                }
+                //textBox1.Text = output.USD_EUR.val.ToString();
+            }
+            
+
+
         }
     }
 }
