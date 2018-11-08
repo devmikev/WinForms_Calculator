@@ -85,6 +85,11 @@ namespace WindowsFormsApp1
             bool success = decimal.TryParse(textBox1.Text, out value2);
             if (success)
                 textBox1.Text = calc.GetResult(value2).ToString();
+
+            plus.Enabled = true;
+            minus.Enabled = true;
+            multiply.Enabled = true;
+            divide.Enabled = true;
         }
 
         //Assumes number already present in textBox1
