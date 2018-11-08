@@ -10,6 +10,6 @@ namespace WindowsFormsApp1
     {
         public string Name => "Multiplication";
         public string Display => "x";
-        public int Apply(int x, int y) => x * y;
+        public decimal Apply(decimal x, decimal y) => x * y;
     }
 }

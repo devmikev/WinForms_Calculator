@@ -4,6 +4,6 @@
     {
         string Name { get; }
         string Display { get; }
-        int Apply(int x, int y);
+        decimal Apply(decimal x, decimal y);
     }
 }

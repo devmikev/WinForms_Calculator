@@ -10,11 +10,12 @@ namespace WindowsFormsApp1
     {
         IOperator Operator { get; set; }
         // store the input for applying operators
-        void InputNumber(string value);
+        void InputNumber1(decimal value);
+        void InputNumber2(decimal value);
         IEnumerable<IOperator> Operations { get; }
         // there may not be two numbers input yet
-        int? ApplyOperator();
-        string Display { get; }
+        decimal? ApplyOperator();
+        decimal Display { get; }
 
     }
 }
