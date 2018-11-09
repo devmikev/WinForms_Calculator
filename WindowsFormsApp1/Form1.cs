@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
                         b.Click += new System.EventHandler(GetNumberButtonValue);
                     else
                     {
-                        if (b.Text != "c" && b.Text != "=")
+                        if (b.Text != "c" && b.Text != "=" && b.Text != "€")
                             b.Click += new System.EventHandler(GetOperator);
                     }
                 }
@@ -65,22 +65,13 @@ namespace WindowsFormsApp1
         private void equals_Click(object sender, EventArgs e)
         {
             decimal value2;
-            //string partialExpression = textBox1.Text;
-            //textBox1.Text = "";
 
             bool success = decimal.TryParse(textBox1.Text, out value2);
             if (success)
             {
                 calc.InputNumber2(value2);
                 textBox1.Text = partialExpression + " " + value2 + " = " + calc.ApplyOperator().ToString();
-
             }
-            //textBox1.Text = calc.GetResult(value2).ToString();
-
-            //plus.Enabled = true;
-            //minus.Enabled = true;
-            //multiply.Enabled = true;
-            //divide.Enabled = true;
         }
 
         //Assumes number already present in textBox1
@@ -134,22 +125,22 @@ namespace WindowsFormsApp1
         //https://stackoverflow.com/a/17248813/57883 found working solution for async blocking on winforms
         async private void currency_Click(object sender, EventArgs e)
         {
-            //decimal value1;
-            //decimal value2;
+            decimal value1;
+            bool success = decimal.TryParse(textBox1.Text, out value1);
+            if (success)
+            {
+                calc.InputNumber1(value1);
+                partialExpression += "$" + textBox1.Text + " = ";
+                decimal? currency = await RequestCurrency.GetValue();
 
-            //bool success = decimal.TryParse(textBox1.Text, out value1);
-
-            //if (success)
-            //{
-            //    decimal? currency = await RequestCurrency.GetValue();
-            //    if (currency != null)
-            //    {
-            //        value2 = currency.Value;
-            //        var convertedValue = calc.ConvertCurrency(value1, value2).ToString("F");
-            //        textBox1.Text = convertedValue;
-            //    }
-            //}
-            throw new NotImplementedException();
+                foreach (var oper in operations)
+                {
+                    if (oper.Name == "Multiplication")
+                        calc.Operator = oper;
+                }
+                calc.InputNumber2((decimal)currency);
+                textBox1.Text = partialExpression + calc.ApplyOperator()?.ToString("F") + "€";
+            }
         }
     }
 }
