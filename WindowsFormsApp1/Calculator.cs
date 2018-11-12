@@ -32,6 +32,9 @@ namespace WindowsFormsApp1
             this.val2 = value;
         }
 
-        public Calculator(IEnumerable<IOperator> operations) => this.Operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
+        public Calculator(IEnumerable<IOperator> operations)
+        {
+            this.Operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
+        }
     }
 }
