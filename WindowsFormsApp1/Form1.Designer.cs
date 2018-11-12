@@ -48,7 +48,7 @@
             this.num7 = new System.Windows.Forms.Button();
             this.divide = new System.Windows.Forms.Button();
             this.currency = new System.Windows.Forms.Button();
-            this.a = new System.Windows.Forms.Button();
+            this.memory = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +95,7 @@
             this.buttonPanel.Controls.Add(this.num7, 0, 1);
             this.buttonPanel.Controls.Add(this.divide, 3, 0);
             this.buttonPanel.Controls.Add(this.currency, 2, 0);
-            this.buttonPanel.Controls.Add(this.a, 1, 0);
+            this.buttonPanel.Controls.Add(this.memory, 1, 0);
             this.buttonPanel.Controls.Add(this.clear, 0, 0);
             this.buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.buttonPanel.Location = new System.Drawing.Point(12, 75);
@@ -389,20 +389,22 @@
             this.currency.UseVisualStyleBackColor = true;
             this.currency.Click += new System.EventHandler(this.currency_Click);
             // 
-            // a
+            // memory
             // 
-            this.a.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.memory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.a.AutoSize = true;
-            this.a.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.a.Location = new System.Drawing.Point(92, 3);
-            this.a.Name = "a";
-            this.a.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.a.Size = new System.Drawing.Size(83, 64);
-            this.a.TabIndex = 1;
-            this.a.UseVisualStyleBackColor = true;
-            this.a.Visible = false;
+            this.memory.AutoSize = true;
+            this.memory.Enabled = false;
+            this.memory.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.memory.Location = new System.Drawing.Point(92, 3);
+            this.memory.Name = "memory";
+            this.memory.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.memory.Size = new System.Drawing.Size(83, 64);
+            this.memory.TabIndex = 1;
+            this.memory.Text = "m+";
+            this.memory.UseVisualStyleBackColor = true;
+            this.memory.Click += new System.EventHandler(this.memory_Click);
             // 
             // clear
             // 
@@ -459,7 +461,7 @@
         private System.Windows.Forms.Button num7;
         private System.Windows.Forms.Button divide;
         private System.Windows.Forms.Button currency;
-        private System.Windows.Forms.Button a;
+        private System.Windows.Forms.Button memory;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button c;
     }
