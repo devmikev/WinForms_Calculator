@@ -117,6 +117,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.equals.AutoSize = true;
+            this.equals.Enabled = false;
             this.equals.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.equals.Location = new System.Drawing.Point(270, 283);
             this.equals.Name = "equals";

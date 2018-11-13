@@ -56,14 +56,7 @@ namespace WindowsFormsApp1
 
         private void clear_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            partialExpression = "";
-            plus.Enabled = true;
-            minus.Enabled = true;
-            multiply.Enabled = true;
-            divide.Enabled = true;
-            currency.Enabled = true;
-            equals.Enabled = true;
+            EnableOperators();
         }
 
         private void equals_Click(object sender, EventArgs e)
@@ -77,6 +70,7 @@ namespace WindowsFormsApp1
                 textBox1.Text = partialExpression + " " + value2 + " = " + calc.ApplyOperator().ToString();
                 _result = calc.ApplyOperator().ToString();
                 Console.WriteLine(_result);
+                memory.Enabled = true;
             }
         }
 
@@ -95,8 +89,7 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                //calc.GetOper(value1, opEnum.Value);
-                calc.InputNumber1(value1); // Set val1, then add OperatorSymbol to textBox and set Operator
+                calc.InputNumber1(value1); 
 
                 foreach (var oper in operations)
                 {
@@ -106,14 +99,11 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                //textBox1.Text += " " + calc.Operator.Display;
                 partialExpression = textBox1.Text + " " + buttonOperator;
                 textBox1.Text = "";
 
-                plus.Enabled = false;
-                minus.Enabled = false;
-                multiply.Enabled = false;
-                divide.Enabled = false;
+                DisableOperators(false);
+                equals.Enabled = true;
             }
             else if (!string.IsNullOrWhiteSpace(_result))
             {
@@ -126,8 +116,7 @@ namespace WindowsFormsApp1
                 bool success2 = decimal.TryParse(_result, out decimalResult);
                 if (success2)
                 {
-                    //calc.GetOper(value1, opEnum.Value);
-                    calc.InputNumber1(decimalResult); // Set val1, then add OperatorSymbol to textBox and set Operator
+                    calc.InputNumber1(decimalResult); 
 
                     foreach (var oper in operations)
                     {
@@ -137,14 +126,11 @@ namespace WindowsFormsApp1
                         }
                     }
 
-                    //textBox1.Text += " " + calc.Operator.Display;
                     partialExpression = _result + " " + buttonOperator;
                     textBox1.Text = "";
 
-                    plus.Enabled = false;
-                    minus.Enabled = false;
-                    multiply.Enabled = false;
-                    divide.Enabled = false;
+                    DisableOperators(false);
+                    equals.Enabled = true;
                 }
 
             }
@@ -179,16 +165,9 @@ namespace WindowsFormsApp1
                 }
                 calc.InputNumber2((decimal)currencyValue);
                 _result = calc.ApplyOperator().ToString();
-                Console.WriteLine(_result.ToString());
                 textBox1.Text = partialExpression + calc.ApplyOperator()?.ToString("F") + "€";
 
-                plus.Enabled = false;
-                minus.Enabled = false;
-                multiply.Enabled = false;
-                divide.Enabled = false;
-                currency.Enabled = false;
-                equals.Enabled = false;
-                memory.Enabled = true;
+                DisableOperators(true);
             }
             else
             {
@@ -197,7 +176,6 @@ namespace WindowsFormsApp1
                 bool success2 = decimal.TryParse(_result, out valueFromMemory);
                 if (success2)
                 {
-                    //calc.InputNumber1(value1);
                     partialExpression += "$" + _result + " = ";
                     decimal? currencyValue = await RequestCurrency.GetValue();
 
@@ -208,15 +186,9 @@ namespace WindowsFormsApp1
                     }
                     calc.InputNumber2((decimal)currencyValue);
                     _result = calc.ApplyOperator()?.ToString("F");
-                    Console.WriteLine(_result.ToString());
                     textBox1.Text = partialExpression + calc.ApplyOperator()?.ToString("F") + "€";
 
-                    plus.Enabled = false;
-                    minus.Enabled = false;
-                    multiply.Enabled = false;
-                    divide.Enabled = false;
-                    currency.Enabled = false;
-                    equals.Enabled = false;
+                    DisableOperators(true);
                 }
             }
 
@@ -230,16 +202,35 @@ namespace WindowsFormsApp1
             {
                 calc.InputNumber1(decimalResult);
                 Console.WriteLine(_result);
+                EnableOperators();
+                memory.Enabled = false;
+            }
+        }
 
-                // refactor duplicate code into method CLEAR
-                textBox1.Text = "";
-                partialExpression = "";
-                plus.Enabled = true;
-                minus.Enabled = true;
-                multiply.Enabled = true;
-                divide.Enabled = true;
-                currency.Enabled = true;
-                equals.Enabled = true;
+        private void EnableOperators()
+        {
+            textBox1.Text = "";
+            partialExpression = "";
+            plus.Enabled = true;
+            minus.Enabled = true;
+            multiply.Enabled = true;
+            divide.Enabled = true;
+            currency.Enabled = true;
+            equals.Enabled = false;
+        }
+
+        private void DisableOperators(bool currencyEqualsMemoryButtons)
+        {
+            plus.Enabled = false;
+            minus.Enabled = false;
+            multiply.Enabled = false;
+            divide.Enabled = false;
+
+            if (currencyEqualsMemoryButtons)
+            {
+                currency.Enabled = false;
+                equals.Enabled = false;
+                memory.Enabled = true;
             }
 
         }
