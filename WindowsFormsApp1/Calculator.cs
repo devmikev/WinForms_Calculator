@@ -6,73 +6,35 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    public enum Oper
+    class Calculator : ICalculator
     {
-        add,
-        sub,
-        mult,
-        div,
-        cur
-    }
+        decimal val1 = 0;
+        decimal val2 = 0;
 
-    class Calculator
-    {
-        private decimal val1;
-        private decimal val2;
-        private Oper? Operator;
+        public IOperator Operator { get; set; }
 
-        public Calculator()
+        public IEnumerable<IOperator> Operations { get; }
+
+        public decimal Display => val1;
+
+        public decimal? ApplyOperator() => this.Operator?.Apply(val1, val2);
+
+        public void InputNumber1(decimal value)
         {
-
+            //int.TryParse(value, out val1);
+            this.val1 = value;
         }
 
-        public void Clear()
+
+        public void InputNumber2(decimal value)
         {
-            this.Operator = null;
-            this.val1 = 0;
-            this.val2 = 0;
+            //int.TryParse(value, out val1);
+            this.val2 = value;
         }
 
-        public void GetOper(decimal currentValue, Oper _operator)
+        public Calculator(IEnumerable<IOperator> operations)
         {
-            this.val1 = currentValue;
-            this.Operator = _operator;
-        }
-
-        public decimal GetResult(decimal value2)
-        {
-            this.val2 = value2;
-            decimal equals = 0;
-
-            var x = val1;
-            
-            var y = val2;
-
-            var oper = Operator;
-
-            if (oper == Oper.add)
-            {
-                equals = x + y;
-            }
-            else if (oper == Oper.sub)
-            {
-                equals = x - y;
-            }
-            else if (oper == Oper.mult)
-            {
-                equals = x * y;
-            }
-            else if (oper == Oper.div)
-            {
-                equals = x / y;
-            }
-
-            return equals;
-        }
-
-        public decimal ConvertCurrency(decimal val1, decimal val2)
-        {
-            return val1 * val2;
+            this.Operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
         }
     }
 }
