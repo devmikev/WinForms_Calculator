@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Calculator : ICalculator
+    public class Calculator : ICalculator
     {
         decimal val1 = 0;
         decimal val2 = 0;

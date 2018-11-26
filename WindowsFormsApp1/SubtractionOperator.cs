@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class SubtractionOperator : IOperator
+    public class SubtractionOperator : IOperator
     {
         public string Name => "Subtraction";
         public string Display => "-";

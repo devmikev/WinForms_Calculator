@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class MultiplicationOperator : IOperator
+    public class MultiplicationOperator : IOperator
     {
         public string Name => "Multiplication";
         public string Display => "x";

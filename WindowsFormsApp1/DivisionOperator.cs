@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class DivisionOperator : IOperator
+    public class DivisionOperator : IOperator
     {
         public string Name => "Division";
         public string Display => "/";
