@@ -8,21 +8,62 @@ namespace WinformsCalculator.UnitTests
     [TestFixture]
     public class OperatorTests
     {
+        private IEnumerable<IOperator> operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
+        private ICalculator _calc;
+        private enum Oper
+        {
+            Addition,
+            Subtraction,
+            Multiplication,
+            Division
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            _calc = new Calculator(operations);
+
+        }
+
+        
+
         [Test] // MethodName_Scenario_ExpectedBehavior
-        public void ApplyOperator_UsingAdditionOperator_ReturnSumOfArguemnts()
+        [TestCase(Oper.Addition, 1, 2, 3)]
+        [TestCase(Oper.Subtraction, 2, 1, 1)]
+        [TestCase(Oper.Multiplication, 2, 3, 6)]
+        [TestCase(Oper.Division, 6, 2, 3)]
+        public void ApplyOperator_WhenCalled_ReturnResultOfExpression(Enum oper, decimal a, decimal b, decimal expectedResult)
         {
             // Arrange
-            IEnumerable<IOperator> operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
-            ICalculator calc = new Calculator(operations);
-            calc.InputNumber1(1);
-            calc.InputNumber2(2);
-            calc.Operator = AdditionOperator();
+            setCalculator(oper, a, b);
+
 
             // Act
-            var result = calc.ApplyOperator();
+            var result = _calc.ApplyOperator();
 
             // Assert
-            Assert.That(result, Is.EqualTo(3));
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        public void setCalculator(Enum oper, decimal a, decimal b)
+        {
+            switch (oper)
+            {
+                case Oper.Addition:
+                    _calc.Operator = new AdditionOperator();
+                    break;
+                case Oper.Subtraction:
+                    _calc.Operator = new SubtractionOperator();
+                    break;
+                case Oper.Multiplication:
+                    _calc.Operator = new MultiplicationOperator();
+                    break;
+                case Oper.Division:
+                    _calc.Operator = new DivisionOperator();
+                    break;
+            }
+            _calc.InputNumber1(a);
+            _calc.InputNumber2(b);
         }
     }
 }
