@@ -10,7 +10,7 @@ namespace WinformsCalculator.UnitTests
     {
         private IEnumerable<IOperator> operations = new IOperator[] { new AdditionOperator(), new SubtractionOperator(), new MultiplicationOperator(), new DivisionOperator() };
         private ICalculator _calc;
-        private enum Oper
+        public enum Oper
         {
             Addition,
             Subtraction,
@@ -32,10 +32,10 @@ namespace WinformsCalculator.UnitTests
         [TestCase(Oper.Subtraction, 2, 1, 1)]
         [TestCase(Oper.Multiplication, 2, 3, 6)]
         [TestCase(Oper.Division, 6, 2, 3)]
-        public void ApplyOperator_WhenCalled_ReturnResultOfExpression(Enum oper, decimal a, decimal b, decimal expectedResult)
+        public void ApplyOperator_WhenCalled_ReturnResultOfExpression(Oper oper, decimal a, decimal b, decimal expectedResult)
         {
             // Arrange
-            setCalculator(oper, a, b);
+            SetCalculator(oper, a, b);
 
 
             // Act
@@ -45,7 +45,7 @@ namespace WinformsCalculator.UnitTests
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-        public void setCalculator(Enum oper, decimal a, decimal b)
+        private void SetCalculator(Oper oper, decimal a, decimal b)
         {
             switch (oper)
             {
@@ -61,6 +61,7 @@ namespace WinformsCalculator.UnitTests
                 case Oper.Division:
                     _calc.Operator = new DivisionOperator();
                     break;
+                                
             }
             _calc.InputNumber1(a);
             _calc.InputNumber2(b);
