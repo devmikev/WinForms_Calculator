@@ -2,3 +2,5 @@
 WindowsFormsApp1/bin/
 WindowsFormsApp1/obj/
 packages/
+WinformsCalculator.UnitTests/bin
+WinformsCalculator.UnitTests/obj
